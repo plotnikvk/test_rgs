@@ -16,10 +16,7 @@ import sun.reflect.generics.tree.Tree;
  * Created by plotnikvk  .
  */
 
-public class rgsTest {
-
-    WebDriver driver;
-    WebDriverWait wait;
+public class rgsTest extends Base {
 
     //Константы для поиска объектов на странице
     private final By InsuranceItemPath = By.xpath("//li[@class='dropdown adv-analytics-" +
@@ -40,16 +37,10 @@ public class rgsTest {
     private final By ButtonPath = By.xpath("//button[@id='button-m']");
     private final By ErrorEmailPath = By.xpath("//span[@class='validation-error-text']");
 
-    @Before
-    public void setUp(){
-        System.setProperty("webdriver.chrome.driver", "drivers/chromedriver.exe");
-        driver = new ChromeDriver();
-        driver.manage().window().maximize();
-        driver.get("http://www.rgs.ru");
-    }
-
     @Test
     public void test ()throws  NullPointerException, IllegalStateException{
+
+        driver.get("http://www.rgs.ru");
         wait = new WebDriverWait(driver,3);
 
         //Находим пункт меню "Страхование", двигаемся к нему, кликаем по нему
@@ -138,11 +129,5 @@ public class rgsTest {
         Assert.assertTrue(checkBoxField.isSelected());
         Assert.assertTrue(errorEmail.isDisplayed());
 
-
-    }
-
-    @After
-    public void tearDown(){
-        driver.quit();
     }
 }
